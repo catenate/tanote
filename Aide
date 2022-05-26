@@ -1,7 +1,7 @@
 .
 Edit ,|sort|uniq 
 git add --all .
-git commit -a -m 'Note preferred renderer for markdown files.'
+git commit -a -m 'Link to Urbit developer guide.'
 git diff
 git push origin main
 git status --branch --short
