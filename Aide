@@ -1,8 +1,10 @@
 .
 Edit ,|sort|uniq 
+New urbit.aide
 git add --all .
 git commit -a -m 'Link to Urbit developer guide.'
 git diff
 git push origin main
 git status --branch --short
+host which urbit
 mv ../tanote*.md .
