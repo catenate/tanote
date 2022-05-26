@@ -1,0 +1,8 @@
+.
+Edit ,|sort|uniq 
+git add --all .
+git commit -a -m 'A first few ideas.'
+git diff
+git push origin master
+git status --branch --short
+mv ../tanote*.md .
