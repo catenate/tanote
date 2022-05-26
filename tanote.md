@@ -7,13 +7,13 @@ note-taker
 
 Tags at top: list of tags. bold if selected for filter (clicked). italic if tagged by current note (in text of note after `#`).  list of @p are pulled from %pals, or ride with notes shared by others to you (*id est*, you are named as a reader).  bold @p for author of current version of note.  italic @p for readers of current version of note.  * selects all notes.  update when a version is added: when a local version is saved, when a note is shared (which also saves it), or when a version of a note is received.  ~~each tag needs to store a list of notes which referred to it in any version.~~
 
-> * *later* other **~ponhec-picwen** __*tag-text*__ that 
+> * *later* other **~ponhec-picwen** __*tanote*__ that 
 
 ---
 
 Notes in middle: list of notes which match the tags selected for filter.  selected note (clicked) is bold.  click on a note to switch to it.  italic notes are those which still refer to the current note with a `[[]]` reference.  updated when a version is added.  each note needs to maintain a list of other notes which referred to it in any version, and check whether the latest version still does.
 
-> **tag-text idea**.  *tag-text literate program*.  tag-text overview.  tag-text use cases.
+> **tanote idea**.  *tanote literate program*.  tanote overview.  tanote use cases.
 
 ---
 
@@ -29,10 +29,10 @@ Text versions at bottom: current note text, sharing tools.  title is first line.
 
 > by ~ponhec-picwen
 > to 
-> re tag-text idea
+> re tanote idea
 > no 1 of 1
 > 
-> Would be really nice to #later write a [[tag-text literate program]] (which refers back to this note) to implement the #tag-text idea.
+> Would be really nice to #later write a [[tanote literate program]] (which refers back to this note) to implement the #tanote idea.
 
 ---
 
