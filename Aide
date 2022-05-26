@@ -1,8 +1,8 @@
 .
 Edit ,|sort|uniq 
 git add --all .
-git commit -a -m 'A first few ideas.'
+git commit -a -m 'Note preferred renderer for markdown files.'
 git diff
-git push origin master
+git push origin main
 git status --branch --short
 mv ../tanote*.md .
