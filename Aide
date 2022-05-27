@@ -3,7 +3,7 @@ Edit ,|sort|uniq
 New urbit.aide
 cp /n/local/home/jdc/urbit/zod/tanote/desk.docket-0 .
 git add --all .
-git commit -a -m 'Describe app.'
+git commit -a -m 'Add a glob.'
 git diff
 git grep -n title
 git push origin main
