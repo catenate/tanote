@@ -1,0 +1,10 @@
+:~  title+'Tanote'
+    info+'A community knowledge manager.'
+    color+0x81.88c9
+    version+[0 0 1]
+    website+'https://github.com/catenate/tanote'
+    license+'MIT'
+    base+'tanote'
+    glob-ames+[~zod 0v0]
+    image+'https://media.urbit.org/docs/userspace/dist/wut.svg'
+==
