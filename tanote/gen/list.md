@@ -24,7 +24,9 @@ Output of the generator.
 ~[1 2 3 4]
 ```
 
-## codeThe |- rune functions as a "restart" point for recursion that will be defined later. It takes one child.
+## code
+
+The |- rune functions as a "restart" point for recursion that will be defined later. It takes one child.
 
 Below is a simple Hoon program that takes a single number `n` from the user as input and produces a list of numbers from `1` up to (but not including) `n`.  So, if the user gives the number `5`, the program will produce: `~[1 2 3 4]`.
 
