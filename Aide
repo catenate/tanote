@@ -1,6 +1,7 @@
 .
 Edit ,|sort|uniq 
 New urbit.aide
+cp -rx /n/local/home/jdc/urbit/zod/tanote tanote
 cp /n/local/home/jdc/urbit/zod/tanote/desk.docket-0 .
 git add --all .
 git commit -a -m 'Add a glob.'
@@ -10,3 +11,4 @@ git push origin main
 git status --branch --short
 host which urbit
 mv ../tanote*.md .
+rm -rf tanote
