@@ -6,7 +6,7 @@ cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
 cp -rx /n/local/home/jdc/urbit/zod/tanote tanote
 cp /n/local/home/jdc/urbit/zod/tanote/desk.docket-0 .
 git add --all .
-git commit -a -m 'add caveat'
+git commit -a -m 'gather related excerpts'
 git diff
 git grep -n title
 git push origin main

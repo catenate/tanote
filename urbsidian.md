@@ -1,0 +1,2 @@
+[[~sogrum-savluc]]: We could get a decent way towards a minimally-useful version with just some additional UI on linking [[Groups Notebook]] posts.  Imagine when you typed a `[[` in a Notebook post you got a dropdown fuzzy-finder for other posts whereby clicking on one filled in the appropriate markdown link to that post.  That seems small and easy, yet wildly powerful.  I guess we'd need backlinks, too.  Trying to shoehorn this all into Notebooks isn't the ideal long-term product, but with a few tweaks it could get really close in the near term.
+

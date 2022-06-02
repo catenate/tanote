@@ -29,7 +29,6 @@ cd /home/jdc/urbit/zod
 ```
 
 Delete the contents of `tanote`:
-+tanote!factorial 5
 
 ```shell
 rm -r tanote/*
