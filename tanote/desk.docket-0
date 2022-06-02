@@ -1,7 +1,7 @@
 :~  title+'Tanote'
-    info+'A community knowledge manager.'
+    info+'factious note manager'
     color+0x81.88c9
-    version+[0 0 1]
+    version+836
     website+'https://github.com/catenate/tanote'
     license+'MIT'
     base+'tanote'

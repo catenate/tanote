@@ -10,11 +10,11 @@ The optional `desk.ship` file specifies the original publisher of this desk. S
 echo "~ponhec-picwen" > tanote/desk.ship
 ```
 
-The final file we need to edit is `desk.docket-0`.
+The final file we need to edit is `desk.docket-0`.  #now
 
 ```hoon
 :~  title+'Tanote'
-    info+'A community knowledge manager.'
+    info+'factional note manager'
     color+0x81.88c9
     version+[0 0 1]
     website+'https://github.com/catenate/tanote'
