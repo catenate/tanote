@@ -1,16 +1,17 @@
 .
 Edit ,|sort|uniq 
 New urbit.aide
-cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
-cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
 cp -rx /n/local/home/jdc/urbit/zod/tanote tanote
+cp -rx tanote/* /n/local/home/jdc/urbit/zod/tanote
 cp /n/local/home/jdc/urbit/zod/tanote/desk.docket-0 .
+cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
+cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git commit -a -m 'update web page description'
 git diff
-git grep -n title
+git grep -n wut
 git push origin main
 git status --branch --short
 host which urbit
 mv ../tanote*.md .
-rm -rf tanote
+rm -rf /n/local/home/jdc/urbit/zod/tanote/*

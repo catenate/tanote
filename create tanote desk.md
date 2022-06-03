@@ -18,8 +18,8 @@ Desks must contain all the `mark` files, libraries, etc, that they need. A `s
 The desks in [[urbit/pkg]] ending in `-dev`, like `base-dev` and `garden-dev`, contain files for interfacing with those respective desks. If you're creating a new desk that has a tile and front-end, for example, you might like to use `base-dev` and `garden-dev` as a base. To create such a base, there's a `symbolic-merge.sh` script included in the directory. You can use it like so:
 
 ```shell
-./symbolic-merge base-dev tanote
-./symbolic-merge garden-dev mydesk
+./symbolic-merge.sh base-dev tanote
+./symbolic-merge.sh garden-dev tanote
 ```
 
 Then, you can go into your pier:
@@ -45,7 +45,7 @@ Note you have to use `cp -rL` rather than just `cp -r` because the `symboli
 Now you can just add a `sys.kelvin` file:
 
 ```shell
-echo '[%zuse 419]' > tanote/sys.kelvin
+echo '[%zuse 418]' > tanote/sys.kelvin
 ```
 
 And you'll be able to mount the desk with 

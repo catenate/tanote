@@ -6,5 +6,5 @@
     license+'MIT'
     base+'tanote'
     glob-ames+[~zod 0v0]
-    image+'https://media.urbit.org/docs/userspace/dist/wut.svg'
+    image+'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Hash-transbg.svg/120px-Hash-transbg.svg.png'
 ==
