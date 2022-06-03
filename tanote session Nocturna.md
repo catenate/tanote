@@ -15,7 +15,7 @@ The starting screen, before adding any version.  The list of @ps comes from %pal
 > 
 > 
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as |
 > ==to== |
 > re |
 > ==no== ~~1~~ of 1
@@ -28,7 +28,7 @@ Name the note, add some text, set a recipient.
 > 
 > 
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as ~~muse~~
 > ==to== ~~`~`petlod-byrons~~
 > re ~~Nocturna~~
 > ==no== ~~1~~ of 1
@@ -47,7 +47,7 @@ The text of the note is no longer editable.
 > 
 > ==**Nocturna**==.
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as muse
 > ==to== ~petlod-byrons
 > re Nocturna
 > ==no== 1 of 1
@@ -60,7 +60,7 @@ Edit and resave to add another version and its tags and @ps.
 > 
 > ==**Nocturna**==.
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as ~~poet~~
 > ==to== ~~`~`petlod-byrons~~
 > re ~~Nocturna~~
 > ==no== ~~2~~ of 2
@@ -78,7 +78,7 @@ Set the version field and click ==no== to switch back to the previous version.
 > 
 > ==**Nocturna**==.
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as muse 
 > ==to== ~petlod-byrons
 > re Nocturna
 > ==no== 1 ==of== 2
@@ -89,6 +89,6 @@ Set the version field and click ==no== to switch back to the previous version.
 
 ==Of== lists, in the text section, the versions of the node available, each with the first line, or the (beginning of the) diff from the previous version.
 
-> 1 She walks in #beauty, like the #night…
-> 2 She walks in #beauty, like the #night~~...~~**of cloudless climes and starry skies**
+> 1 muse: She walks in #beauty, like the #night…
+> 2 poet: She walks in #beauty, like the #night~~...~~**of cloudless climes and starry skies**
 

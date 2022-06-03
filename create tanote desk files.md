@@ -32,5 +32,5 @@ Commit and install our changes.
 |install our %tanote
 ```
 
-Open a browser and navigate to [localhost:80](http://localhost:80) .  To get the login code ([[access key]]), enter `+code` into the [[dojo]] prompt for your ship.  For [[fake ~zod]]s, the code is always `lidlut-tabwed-pillex-ridrup`. YFor [[fake ~zod]]s, the code is always `lidlut-tabwed-pillex-ridrup`. ou'll see our tile, but it says installing with a spinner due to the missing glob.
+Open a browser and navigate to [localhost:80](http://localhost:80) .  To get the login code ([[access key]]), enter `+code` into the [[dojo]] prompt for your ship.  For [[fake ~zod]]s, the code is always `lidlut-tabwed-pillex-ridrup`.  You'll see our tile, but it says installing with a spinner due to the missing glob.
 

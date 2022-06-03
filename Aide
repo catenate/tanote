@@ -4,10 +4,11 @@ New urbit.aide
 cp -rx /n/local/home/jdc/urbit/zod/tanote tanote
 cp -rx tanote/* /n/local/home/jdc/urbit/zod/tanote
 cp /n/local/home/jdc/urbit/zod/tanote/desk.docket-0 .
+cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
-git commit -a -m 'update web page description'
+git commit -a -m 'update [lib mar sur] to urbit 1.9'
 git diff
 git grep -n wut
 git push origin main

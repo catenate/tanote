@@ -5,7 +5,7 @@
 
 Receive a version of this text, with regards to a new note name.
 
-> by ~abeham-lincon
+> by ~abeham-lincon as president
 > to ~ponhec-picwen
 > re draft from train
 > 
@@ -19,7 +19,7 @@ Automatically update tags, @ps, and regards.
 > 
 > ==draft from train==.
 > 
-> by ~ponhec-picwen 
+> by ~ponhec-picwen as |
 > ==to== |
 > re |
 > ==no== ~~1~~ of 1
@@ -40,7 +40,7 @@ Selecting a notes' regards displays it.
 > 
 > ==**draft from train**==.
 > 
-> by ~abeham-lincon
+> by ~abeham-lincon as ~~president~~
 > ==to== ~~~ponhec-picwen~~
 > re ~~draft from train~~
 > ==no== ~~1~~ of 1
