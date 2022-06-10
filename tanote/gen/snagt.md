@@ -62,8 +62,8 @@ Run the generator.
 Output of the generator.
 
 ```shell-session
-108
-101
-33
+`l`
+`e`
+`!`
 ```
 

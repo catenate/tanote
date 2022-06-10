@@ -8,7 +8,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
-git commit -a -m 'add faction in mockups'
+git commit -a -m 'Fix documented output of snagt.'
 git diff
 git grep -n wut
 git push origin main
