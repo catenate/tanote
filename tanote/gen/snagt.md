@@ -1,6 +1,6 @@
-# my snagt
+# snag text
 
-https://urbit.org/docs/hoon/hoon-school/lists#snagt
+https://urbit.org/docs/hoon/hoon-school/lists#snag
 
 Take i.c n times.
 
