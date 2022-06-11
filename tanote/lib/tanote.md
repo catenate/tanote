@@ -121,12 +121,6 @@ For each octothorpe index, extract the tag at that index from the text.
 
 	tanote.hoon:   $(ois +3:ois, tags [(extract-tag +2:ois text) tags])
 
-Pass an index and the string down to a gate to retun the text until the next space.
-
-Find indices of spaces following each octothorpe.
-
-Use [swag](https://urbit.org/docs/hoon/reference/stdlib/2b#++swag) to take substring between octothorpe and space.
-
 ### octothorpe indices
 
 List indices of octothorpes in text.
