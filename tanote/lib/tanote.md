@@ -72,7 +72,7 @@ Return a tape.
 
 	tanote.hoon:   ^-  (list @t)
 
-If we are at the strnig length, stop, and return the tag.
+If we are at the string length, stop, and return the tag.
 
 	tanote.hoon:   ?:  =(oi max)
 	tanote.hoon:     (flop tag)
@@ -112,14 +112,12 @@ Return a tape.
 
 	tanote.hoon:   ^-  (list)
 
-If we are at a character that is not part of a hash, stop, and return the tag.
+Once we're done with the list of octothorpe indices, return the list of tags.
 
 	tanote.hoon:   ?:  =(~ ois)
 	tanote.hoon:     (flop tags)
 
 For each octothorpe index, extract the tag at that index from the text.
-
-Otherwise, build up the tag with the next character.
 
 	tanote.hoon:   $(ois +3:ois, tags [(extract-tag +2:ois text) tags])
 
