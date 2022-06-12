@@ -11,6 +11,7 @@ Rename this program.
 Extract hoon files and copy it to [[fake ~zod]] desk.
 
 ```shell
+lit 'lit=testlib.md' 'file=testlib.hoon' 'variant=verbose'
 lit 'lit=testlib.md' 'file=testlib.hoon'
 cp testlib.hoon /n/local/home/jdc/urbit/zod/tanote/gen/
 ```
@@ -37,8 +38,10 @@ Check return values of gates from the [[tanote library]].
 
 Check the default tags.
 
+	testlib.hoon:verbose: :-  (default-tags:tanote)
+
 	testlib.hoon: :-  .=  (default-tags:tanote)
-	testlib.hoon:     ~['*' '/']
+	testlib.hoon:     (sy ~["/" "*"])
 
 Find tags in a text [[tape]].
 
@@ -62,10 +65,12 @@ Extract tags from text.
 
 	testlib.hoon: :-  .=  (extract-tags:tanote ~ "This is a test.")
 	testlib.hoon:     ~
+	testlib.hoon:verbose: :-  (extract-tags:tanote ~[10] "This is a #hash test.")
 	testlib.hoon: :-  .=  (extract-tags:tanote ~[10] "This is a #hash test.")
-	testlib.hoon:     ~["#hash"]
+	testlib.hoon:     (sy ~["#hash"])
+	testlib.hoonverbose:: :-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash #test.")
 	testlib.hoon: :-  .=  (extract-tags:tanote ~[19 25] "This is a multiple-#hash #test.")
-	testlib.hoon:     ~["#hash" "#test"]
+	testlib.hoon:     (sy ~["#hash" "#test"])
 
 End tests.
 

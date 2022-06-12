@@ -8,7 +8,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/desk.docket-0 /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
-git commit -a -m 'remove obsolete commentary'
+git commit -a -m 'Use sets of tapes (set (list @t)) for tags and regards, instead of lists of tapes, so we get deduplication for free.'
 git diff
 git grep -n wut
 git push origin main

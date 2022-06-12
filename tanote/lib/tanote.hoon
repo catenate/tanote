@@ -1,8 +1,8 @@
 |%
 ++  default-tags
   |=  ~
-  ^-  (list @t)
-  ~['*' '/']
+  ^-  (set (list @t))
+  (sy ~["*" "/"])
 ++  extract-tag
   |=  [oi=@ud text=(list @t)]
   =/  max=@  (lent text)
@@ -18,12 +18,12 @@
   $(oi +(oi), tag [t tag])
 ++  extract-tags
   |=  [ois=(list @ud) text=(list @t)]
-  =/  tags=(list)  ~
+  =/  tags=(set (list @t))  ~
   |-
-  ^-  (list)
+  ^-  (set (list @t))
   ?:  =(~ ois)
-    (flop tags)
-  $(ois +3:ois, tags [(extract-tag +2:ois text) tags])
+    tags
+  $(ois +3:ois, tags (~(put in tags) (extract-tag +2:ois text)))
 ++  octothorpe-indices
   |=  text=(list @t)
   (fand "#" text)

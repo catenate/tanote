@@ -39,11 +39,11 @@ Define the gate with no parameters.
 
 We return a [[list of strings]].
 
-	tanote.hoon:   ^-  (list @t)
+	tanote.hoon:   ^-  (set (list @t))
 
 `*` means all notes.  `/` means select notes with backlinks to the selected note.
 
-	tanote.hoon:   ~['*' '/']
+	tanote.hoon:   (sy ~["*" "/"])
 
 ### extract tag
 
@@ -102,7 +102,7 @@ Accept the list of octothorpe indices, and the text [[string]].
 
 Build up the list of tags.
 
-	tanote.hoon:   =/  tags=(list)  ~
+	tanote.hoon:   =/  tags=(set (list @t))  ~
 
 Recursion point.
 
@@ -110,16 +110,16 @@ Recursion point.
 
 Return a tape.
 
-	tanote.hoon:   ^-  (list)
+	tanote.hoon:   ^-  (set (list @t))
 
-Once we're done with the list of octothorpe indices, return the list of tags.
+Once we're done with the list of octothorpe indices, return the set of tags.
 
 	tanote.hoon:   ?:  =(~ ois)
-	tanote.hoon:     (flop tags)
+	tanote.hoon:     tags
 
-For each octothorpe index, extract the tag at that index from the text.
+For each octothorpe index, extract the tag at that index from the text, and add it to the set.
 
-	tanote.hoon:   $(ois +3:ois, tags [(extract-tag +2:ois text) tags])
+	tanote.hoon:   $(ois +3:ois, tags (~(put in tags) (extract-tag +2:ois text)))
 
 ### octothorpe indices
 
