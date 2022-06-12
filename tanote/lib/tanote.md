@@ -37,7 +37,7 @@ Define the gate with no parameters.
 
 	tanote.hoon:   |=  ~
 
-We return a [[list of strings]].
+We return a [[set of tapes]].
 
 	tanote.hoon:   ^-  (set (list @t))
 
@@ -96,11 +96,11 @@ Extract tags from note text.
 
 	tanote.hoon: ++  extract-tags
 
-Accept the list of octothorpe indices, and the text [[string]].
+Accept the list of octothorpe indices, and the text of the note.
 
 	tanote.hoon:   |=  [ois=(list @ud) text=(list @t)]
 
-Build up the list of tags.
+Build up the set of tags.
 
 	tanote.hoon:   =/  tags=(set (list @t))  ~
 
@@ -108,7 +108,7 @@ Recursion point.
 
 	tanote.hoon:   |-
 
-Return a tape.
+Return a set of tapes.
 
 	tanote.hoon:   ^-  (set (list @t))
 
@@ -117,7 +117,7 @@ Once we're done with the list of octothorpe indices, return the set of tags.
 	tanote.hoon:   ?:  =(~ ois)
 	tanote.hoon:     tags
 
-For each octothorpe index, extract the tag at that index from the text, and add it to the set.
+For each octothorpe index, extract the tag at that index from the text, and add it to the set of tags.
 
 	tanote.hoon:   $(ois +3:ois, tags (~(put in tags) (extract-tag +2:ois text)))
 
