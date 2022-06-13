@@ -31,6 +31,7 @@
 :-  (extract-tags:tanote ~[10] "This is a #hash test.")
 :-  .=  (extract-tags:tanote ~[10] "This is a #hash test.")
     (sy ~["#hash"])
+:-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
 :-  .=  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
     (sy ~["#hash" "~ponhec-picwen"])
 :-  .=  (extract-backlink:tanote 10 "This is a [[hash]] test.")
@@ -45,6 +46,7 @@
 :-  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
 :-  .=  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
     (sy ~["hash"])
+:-  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
 :-  .=  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
     (sy ~["link" "~ponhec-picwen"])
 ~

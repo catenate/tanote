@@ -90,7 +90,7 @@ Test [[tanote/tanote/lib/tanote#extract tags]] to extract tags from a text.
 	testlib.hoon:verbose: :-  (extract-tags:tanote ~[10] "This is a #hash test.")
 	testlib.hoon: :-  .=  (extract-tags:tanote ~[10] "This is a #hash test.")
 	testlib.hoon:     (sy ~["#hash"])
-	testlib.hoonverbose:: :-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
+	testlib.hoon:verbose: :-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
 	testlib.hoon: :-  .=  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
 	testlib.hoon:     (sy ~["#hash" "~ponhec-picwen"])
 
@@ -115,7 +115,7 @@ Test [[tanote/tanote/lib/tanote#extract backlinks]] to extract backlinks from a 
 	testlib.hoon:verbose: :-  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
 	testlib.hoon: :-  .=  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
 	testlib.hoon:     (sy ~["hash"])
-	testlib.hoonverbose:: :-  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
+	testlib.hoon:verbose: :-  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
 	testlib.hoon: :-  .=  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
 	testlib.hoon:     (sy ~["link" "~ponhec-picwen"])
 
