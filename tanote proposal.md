@@ -44,7 +44,9 @@ I recently had a brainstorm that defined this project, and have been inspired to
 
 I just started Hoon school (I'm up to recursion), and then comes Gall school and working through the journal example, which should provide a sort of basis for thes project’s code.  My work on it so far, which is mostly just notes and a static page:  [catena/tanote](https://github.com/catenate/tanote).
 
-I started writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.  The gates currently create lists of tags, so the next step is to create sets instead.
+I started writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.
+
+The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
 
 ### Funding
 

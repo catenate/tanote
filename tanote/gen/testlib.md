@@ -36,41 +36,88 @@ Define a [[say generator]] that takes no arguments.
 
 Check return values of gates from the [[tanote library]].
 
-Check the default tags.
+### test default-tags
+
+Test [[tanote/tanote/lib/tanote#list default tags]] to check the default tags.
 
 	testlib.hoon:verbose: :-  (default-tags:tanote)
 
 	testlib.hoon: :-  .=  (default-tags:tanote)
 	testlib.hoon:     (sy ~["/" "*"])
 
-Find tags in a text [[tape]].
+### test index-tags
 
-	testlib.hoon: :-  .=  (octothorpe-indices:tanote "This is a test.")
+Test [[tanote/tanote/lib/tanote#index tags]] to find tags in a text [[tape]].
+
+	testlib.hoon:verbose: :-  (index-tags:tanote "This is a test.")
+	testlib.hoon: :-  .=  (index-tags:tanote "This is a test.")
 	testlib.hoon:     ~
-	testlib.hoon: :-  .=  (octothorpe-indices:tanote "This is a #hash test.")
+	testlib.hoon:verbose: :-  (index-tags:tanote "This is a #hash test.")
+	testlib.hoon: :-  .=  (index-tags:tanote "This is a #hash test.")
 	testlib.hoon:     ~[10]
-	testlib.hoon: :-  .=  (octothorpe-indices:tanote "This is a multiple-#hash #test.")
+	testlib.hoon:verbose: :-  (index-tags:tanote "This is a multiple-#hash ~ponhec-picwen.")
+	testlib.hoon: :-  .=  (index-tags:tanote "This is a multiple-#hash ~ponhec-picwen.")
 	testlib.hoon:     ~[19 25]
 
-Extract a tags from a text.
+### test index-backlinks
+
+Test [[tanote/tanote/lib/tanote#index backlinks]] to find backlinks in a text [[tape]].
+
+	testlib.hoon: :-  .=  (index-backlinks:tanote "This is a test.")
+	testlib.hoon:     ~
+	testlib.hoon: :-  .=  (index-backlinks:tanote "This is a [[hash]] test.")
+	testlib.hoon:     ~[10]
+	testlib.hoon: :-  .=  (index-backlinks:tanote "This is a multiple-[[hash]] [[~ponhec-picwen]].")
+	testlib.hoon:     ~[19 28]
+
+### test extract-tag
+
+Test [[tanote/tanote/lib/tanote#extract tag]] to extract a tag from a text.
 
 	testlib.hoon: :-  .=  (extract-tag:tanote 10 "This is a #hash test.")
 	testlib.hoon:     "#hash"
 	testlib.hoon: :-  .=  (extract-tag:tanote 19 "This is a multiple-#hash #test.")
 	testlib.hoon:     "#hash"
-	testlib.hoon: :-  .=  (extract-tag:tanote 25 "This is a multiple-#hash #test.")
-	testlib.hoon:     "#test"
+	testlib.hoon: :-  .=  (extract-tag:tanote 25 "This is a multiple-#hash ~ponhec-picwen.")
+	testlib.hoon:     "~ponhec-picwen"
 
-Extract tags from text.
+### test extract-tags
+
+Test [[tanote/tanote/lib/tanote#extract tags]] to extract tags from a text.
 
 	testlib.hoon: :-  .=  (extract-tags:tanote ~ "This is a test.")
 	testlib.hoon:     ~
 	testlib.hoon:verbose: :-  (extract-tags:tanote ~[10] "This is a #hash test.")
 	testlib.hoon: :-  .=  (extract-tags:tanote ~[10] "This is a #hash test.")
 	testlib.hoon:     (sy ~["#hash"])
-	testlib.hoonverbose:: :-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash #test.")
-	testlib.hoon: :-  .=  (extract-tags:tanote ~[19 25] "This is a multiple-#hash #test.")
-	testlib.hoon:     (sy ~["#hash" "#test"])
+	testlib.hoonverbose:: :-  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
+	testlib.hoon: :-  .=  (extract-tags:tanote ~[19 25] "This is a multiple-#hash ~ponhec-picwen.")
+	testlib.hoon:     (sy ~["#hash" "~ponhec-picwen"])
+
+### test extract-backlink
+
+Test [[tanote/tanote/lib/tanote#extract backlink]] to extract a backlink from a text.
+
+	testlib.hoon: :-  .=  (extract-backlink:tanote 10 "This is a [[hash]] test.")
+	testlib.hoon:     "hash"
+	testlib.hoon: :-  .=  (extract-backlink:tanote 19 "This is a multiple-[[hash]] [[test]].")
+	testlib.hoon:     "hash"
+	testlib.hoon:verbose: :-  (extract-backlink:tanote 28 "This is a multiple-[[hash]] [[test]].")
+	testlib.hoon: :-  .=  (extract-backlink:tanote 28 "This is a multiple-[[hash]] [[test]].")
+	testlib.hoon:     "test"
+
+### test extract-backlinks
+
+Test [[tanote/tanote/lib/tanote#extract backlinks]] to extract backlinks from a text.
+
+	testlib.hoon: :-  .=  (extract-backlinks:tanote ~ "This is a test.")
+	testlib.hoon:     ~
+	testlib.hoon:verbose: :-  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
+	testlib.hoon: :-  .=  (extract-backlinks:tanote ~[10] "This is a [[hash]] test.")
+	testlib.hoon:     (sy ~["hash"])
+	testlib.hoonverbose:: :-  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
+	testlib.hoon: :-  .=  (extract-backlinks:tanote ~[19 28] "This is a multiple-[[link]] [[~ponhec-picwen]].")
+	testlib.hoon:     (sy ~["link" "~ponhec-picwen"])
 
 End tests.
 
