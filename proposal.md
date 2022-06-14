@@ -38,19 +38,37 @@ We could possibly monetize notes, either automatically by gating the sending of 
 
 ### Qualifications
 
-I recently had a brainstorm that defined this project, and have been inspired to make something that strikes me as Martian.  I'm doing this on my own, but I have a Computer Engineering degree and 40 years experience writing software (taught myself BASIC on a TI-99/4A and Logo on a Commodore 64), so I should be able to figure it out.
-
-### Progress
-
-I just started Hoon school (I'm up to recursion), and then comes Gall school and working through the journal example, which should provide a sort of basis for thes project’s code.  My work on it so far, which is mostly just notes and a static page:  [catena/tanote](https://github.com/catenate/tanote).
-
-I started writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.
-
-The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
+I recently had a brainstorm that defined this project, and have been inspired to make something that strikes me as Martian.  I'm doing this on my own, but I have a Computer Engineering degree and 40 years experience writing software (taught myself BASIC on a TI-99/4A and Logo on a Commodore 64), so I should be able to figure it out.  Professionally, I’ve been a software build engineer since 1994, in telecoms, build-tool, financial, and electrical-distribution industries, and I use Inferno over top of whichever laptop OS they give me.
 
 ### Funding
 
 I’ll let the Foundation decide how much this project is worth.  I hope at least one star, which I would use to get more people into Urbit.
+
+## Progress
+
+### done
+
+My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
+
+### now
+
+I just started Hoon school (I'm working on lists), and then comes Gall school and working through the ~pocwet journal example, which should provide a kind of basis for this project’s code.
+
+I am writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.
+
+### next
+
+Structure a note.  Write details to a note.  Read details from a note.
+
+### later
+
+Structure a list of versions of a note.  Add a note to the version structure.  Get tags and backlinks from the most recent (first) version of the note.
+
+Store the structure containing versions of a note.
+
+Share a note with another ship.
+
+Front end.
 
 ---
 

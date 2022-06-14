@@ -1,4 +1,4 @@
-[[urbit app]] [[tanote]]
+[[urbit app]] [[tanote/tanote]]
 
 https://dev.tlon.io/
 

@@ -1,4 +1,4 @@
-[[tanote]]
+[[tanote/tanote]]
 
 General outline of the format of the screen.
 

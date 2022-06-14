@@ -1,5 +1,5 @@
-[[tanote]]
-[[tanote session init]]
+[[tanote/tanote]]
+[[session init]]
 
 ---
 

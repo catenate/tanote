@@ -1,6 +1,6 @@
 [[urbit app]] idea: tags-notes-text
 pronounced tah-noh-teh
-[[tanote]]
+[[tanote/tanote]]
 
 community knowledge manager
 Teaching Assistant

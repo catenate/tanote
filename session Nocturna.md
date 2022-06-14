@@ -1,4 +1,4 @@
-[[tanote]] [[tanote session init]]
+[[tanote/tanote]] [[session init]]
 
 General outline of the format of the screen.
 
