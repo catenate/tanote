@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Extract tags and backlinks from a note history, by considering only the latest (first) note.'
+git commit -a -m 'Update progress.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '

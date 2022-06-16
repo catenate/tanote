@@ -64,9 +64,7 @@ Update a note, by adding a new version to the history of a note.
 
 ### later
 
-Structure a list of versions of a note.  Add a note to the version structure.  Get tags and backlinks from the most recent (first) version of the note.
-
-Store the structure containing versions of a note.
+Store the overall structure containing version histories of notes.
 
 Share a note with another ship.
 
