@@ -46,7 +46,6 @@ Notes.
 
 	testlib.hoon: =/  tagbl0=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "tag and backlink" "This is a test with a #tag and a [[backlink]]."]
 
-
 Histories.
 
 	testlib.hoon: =/  history0=history:tanote  ["test" ~[test2 test1 test0]]
@@ -199,7 +198,7 @@ Extract tags and backlinks from the latest version in a history. #now
 	testlib.hoon: :-  .=  (extract-backlinks-tape:tanote (index-backlinks:tanote text.tagbl0) text.tagbl0)
 	testlib.hoon:     (sy ~["backlink"])
 
-
+_Confer_ [[2022-06-16 05-17]] discusses polymorphic gates, and whether it would be possible/better to create one function `extract-tags` which has different definitions depending on whether it gets a tape or a note.
 
 	testlib.hoon: :-  .=  (extract-tags-note:tanote tagbl0)
 	testlib.hoon:     (sy ~["#tag"])

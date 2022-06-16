@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Define structure of a note, and the history of a note.  Extract tags or backlinks from either tapes or notes.  Define variables for test data.  Test accessing all the fields of a note and a history.'
+git commit -a -m 'Update progress.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '

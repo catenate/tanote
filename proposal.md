@@ -50,6 +50,8 @@ I’ll let the Foundation decide how much this project is worth.  I hope at leas
 
 My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
 
+Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.
+
 ### now
 
 I just started Hoon school (I'm working on lists), and then comes Gall school and working through the ~pocwet journal example, which should provide a kind of basis for this project’s code.
@@ -58,7 +60,9 @@ I am writing literate programs in markdown, to define library functions to extra
 
 ### next
 
-Structure a note.  Write details to a note.  Read details from a note.
+Extract tags and backlinks from a note history, by considering only the latest (first) note.
+
+Update a note, by adding a new version to the history of a note.
 
 ### later
 
