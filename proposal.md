@@ -50,7 +50,7 @@ I’ll let the Foundation decide how much this project is worth.  I hope at leas
 
 My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
 
-Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.
+Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.  Extract tags and backlinks from a note history, by considering only the latest (first) note.
 
 ### now
 
@@ -59,8 +59,6 @@ I just started Hoon school (I'm working on lists), and then comes Gall school an
 I am writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.
 
 ### next
-
-Extract tags and backlinks from a note history, by considering only the latest (first) note.
 
 Update a note, by adding a new version to the history of a note.
 

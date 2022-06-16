@@ -104,6 +104,17 @@ Otherwise, build up the backlink with the next character.
 
 	tanote.hoon:   $(cursor +(cursor), backlink [t0 backlink])
 
+### extract backlinks from a history
+
+Extract [[tanote/glossary#backlink]]s from a note history.
+
+	tanote.hoon: ++  extract-backlinks-history
+
+Accept a note history, and consider only the latest (first) note.
+
+	tanote.hoon:   |=  h=history
+	tanote.hoon:   (extract-backlinks-note (snag 0 versions.h))
+
 ### extract backlinks from a note
 
 Extract [[tanote/glossary#backlink]]s from a note.
@@ -193,6 +204,17 @@ If we are at a character that is not part of a hash, stop, and return the tag.
 Otherwise, build up the tag with the next character.
 
 	tanote.hoon:   $(oi +(oi), tag [t tag])
+
+### extract tags from a history
+
+Extract [[tanote/glossary#tag]]s from a note history.
+
+	tanote.hoon: ++  extract-tags-history
+
+Accept a note history, and consider only the latest (first) note.
+
+	tanote.hoon:   |=  h=history
+	tanote.hoon:   (extract-tags-note (snag 0 versions.h))
 
 ### extract tags from a note
 

@@ -38,7 +38,7 @@ Check return values of gates from the [[tanote library]].
 
 ### test data
 
-Notes.
+#### notes
 
 	testlib.hoon: =/  test0=note:tanote  [~ponhec-picwen "tester" ~ "test" "This is a test."]
 	testlib.hoon: =/  test1=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen] "test" "This is a test."]
@@ -46,9 +46,14 @@ Notes.
 
 	testlib.hoon: =/  tagbl0=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "tag and backlink" "This is a test with a #tag and a [[backlink]]."]
 
-Histories.
+	testlib.hoon: =/  test10=note:tanote  [~ponhec-picwen "tester" ~ "another test" "This is a #test with a [[backlink]]."]
+	testlib.hoon: =/  test11=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen] "another test" "This is another #test with two #tag and two [[backlink]] for [[tanote]]."]
+	testlib.hoon: =/  test12=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "another test" "This is another #test with an #array of #tag and more [[backlink]] for [[tanote]] [[test data]]."]
+
+#### histories
 
 	testlib.hoon: =/  history0=history:tanote  ["test" ~[test2 test1 test0]]
+	testlib.hoon: =/  history1=history:tanote  ["another test" ~[test12 test11 test10]]
 
 	testlib.hoon: =/  latest-history0=note:tanote  (snag 0 versions.history0)
 
@@ -204,6 +209,16 @@ _Confer_ [[2022-06-16 05-17]] discusses polymorphic gates, and whether it would 
 	testlib.hoon:     (sy ~["#tag"])
 	testlib.hoon: :-  .=  (extract-backlinks-note:tanote tagbl0)
 	testlib.hoon:     (sy ~["backlink"])
+
+	testlib.hoon: :-  .=  (extract-tags-history:tanote history0)
+	testlib.hoon:     ~
+	testlib.hoon: :-  .=  (extract-backlinks-history:tanote history0)
+	testlib.hoon:     ~
+
+	testlib.hoon: :-  .=  (extract-tags-history:tanote history1)
+	testlib.hoon:     (sy ~["#array" "#tag" "#test"])
+	testlib.hoon: :-  .=  (extract-backlinks-history:tanote history1)
+	testlib.hoon:     (sy ~["backlink" "tanote" "test data"])
 
 ### end tests
 

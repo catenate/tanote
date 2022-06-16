@@ -19,6 +19,9 @@
   ?:  =(~[t0 t1] "]]")
     (flop backlink)
   $(cursor +(cursor), backlink [t0 backlink])
+++  extract-backlinks-history
+  |=  h=history
+  (extract-backlinks-note (snag 0 versions.h))
 ++  extract-backlinks-note
   |=  n=note
   (extract-backlinks-tape (index-backlinks text.n) text.n)
@@ -43,6 +46,9 @@
   ?:  =(~ (find ~[t] allowed))
     (flop tag)
   $(oi +(oi), tag [t tag])
+++  extract-tags-history
+  |=  h=history
+  (extract-tags-note (snag 0 versions.h))
 ++  extract-tags-note
   |=  n=note
   (extract-tags-tape (index-tags text.n) text.n)
