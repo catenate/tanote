@@ -1,4 +1,4 @@
-# library functions for %tanote
+[~ponhec-picwen]]~sarlur-pilled# library functions for %tanote
 
 https://urbit.org/docs/hoon/hoon-school/libraries
 
@@ -26,6 +26,16 @@ Commit the file in the desk.
 Define a core.
 
 	tanote.hoon: |%
+
+### note structure
+
+The rune `+$` ([[lusbuc]]) defines a structure arm (type definition).
+
+	tanote.hoon: +$  note  [by=@p as=tape to=(list @p) re=tape text=tape]
+
+### note history structure
+
+	tanote.hoon: +$  history  [regards=tape versions=(list note)]
 
 ### default tags
 
@@ -94,11 +104,22 @@ Otherwise, build up the backlink with the next character.
 
 	tanote.hoon:   $(cursor +(cursor), backlink [t0 backlink])
 
-### extract backlinks
+### extract backlinks from a note
+
+Extract [[tanote/glossary#backlink]]s from a note.
+
+	tanote.hoon: ++  extract-backlinks-note
+
+Accept a note, and determine the list of backlink indices and the text of the note.
+
+	tanote.hoon:   |=  n=note
+	tanote.hoon:   (extract-backlinks-tape (index-backlinks text.n) text.n)
+
+### extract backlinks from a tape
 
 Extract [[tanote/glossary#backlink]]s from note [[tanote/glossary#text]].
 
-	tanote.hoon: ++  extract-backlinks
+	tanote.hoon: ++  extract-backlinks-tape
 
 Accept the list of backlink starts, and the text of the note.
 
@@ -173,11 +194,22 @@ Otherwise, build up the tag with the next character.
 
 	tanote.hoon:   $(oi +(oi), tag [t tag])
 
-### extract tags
+### extract tags from a note
+
+Extract [[tanote/glossary#tag]]s from a note.
+
+	tanote.hoon: ++  extract-tags-note
+
+Accept a note, and determine the list of tag indices and the text of the note.
+
+	tanote.hoon:   |=  n=note
+	tanote.hoon:   (extract-tags-tape (index-tags text.n) text.n)
+
+### extract tags from a tape
 
 Extract [[tanote/glossary#tag]]s from note [[tanote/glossary#text]].
 
-	tanote.hoon: ++  extract-tags
+	tanote.hoon: ++  extract-tags-tape
 
 Accept the list of tag indices, and the text of the note.
 

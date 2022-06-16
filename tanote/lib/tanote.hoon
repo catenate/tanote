@@ -1,4 +1,6 @@
 |%
++$  note  [by=@p as=tape to=(list @p) re=tape text=tape]
++$  history  [regards=tape versions=(list note)]
 ++  default-tags
   |=  ~
   ^-  (set (list @t))
@@ -17,7 +19,10 @@
   ?:  =(~[t0 t1] "]]")
     (flop backlink)
   $(cursor +(cursor), backlink [t0 backlink])
-++  extract-backlinks
+++  extract-backlinks-note
+  |=  n=note
+  (extract-backlinks-tape (index-backlinks text.n) text.n)
+++  extract-backlinks-tape
   |=  [starts=(list @ud) text=(list @t)]
   =/  backlinks=(set (list @t))  ~
   |-
@@ -38,7 +43,10 @@
   ?:  =(~ (find ~[t] allowed))
     (flop tag)
   $(oi +(oi), tag [t tag])
-++  extract-tags
+++  extract-tags-note
+  |=  n=note
+  (extract-tags-tape (index-tags text.n) text.n)
+++  extract-tags-tape
   |=  [starts=(list @ud) text=(list @t)]
   =/  tags=(set (list @t))  ~
   |-
