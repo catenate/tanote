@@ -40,15 +40,15 @@ Check return values of gates from the [[tanote library]].
 
 #### notes
 
-	testlib.hoon: =/  test0=note:tanote  [~ponhec-picwen "tester" ~ "test" "This is a test."]
-	testlib.hoon: =/  test1=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen] "test" "This is a test."]
-	testlib.hoon: =/  test2=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "test" "This is a test."]
+	testlib.hoon: =/  test0=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~ "test" "This is a test."]
+	testlib.hoon: =/  test1=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~[~ponhec-picwen] "test" "This is a test."]
+	testlib.hoon: =/  test2=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~[~ponhec-picwen ~nocsyx-lassul] "test" "This is a test."]
 
-	testlib.hoon: =/  tagbl0=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "tag and backlink" "This is a test with a #tag and a [[backlink]]."]
+	testlib.hoon: =/  tagbl0=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~[~ponhec-picwen ~nocsyx-lassul] "tag and backlink" "This is a test with a #tag and a [[backlink]]."]
 
-	testlib.hoon: =/  test10=note:tanote  [~ponhec-picwen "tester" ~ "another test" "This is a #test with a [[backlink]]."]
-	testlib.hoon: =/  test11=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen] "another test" "This is another #test with two #tag and two [[backlink]] for [[tanote]]."]
-	testlib.hoon: =/  test12=note:tanote  [~ponhec-picwen "tester" ~[~ponhec-picwen ~nocsyx-lassul] "another test" "This is another #test with an #array of #tag and more [[backlink]] for [[tanote]] [[test data]]."]
+	testlib.hoon: =/  test10=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~ "another test" "This is a #test with a [[backlink]]."]
+	testlib.hoon: =/  test11=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~[~ponhec-picwen] "another test" "This is another #test with two #tag and two [[backlink]] for [[tanote]]."]
+	testlib.hoon: =/  test12=note:tanote  [~ponhec-picwen "tester" [0x0 ~ponhec-picwen] ~[~ponhec-picwen ~nocsyx-lassul] "another test" "This is another #test with an #array of #tag and more [[backlink]] for [[tanote]] [[test data]]."]
 
 #### histories
 
@@ -56,6 +56,10 @@ Check return values of gates from the [[tanote library]].
 	testlib.hoon: =/  history1=history:tanote  ["another test" ~[test12 test11 test10]]
 
 	testlib.hoon: =/  latest-history0=note:tanote  (snag 0 versions.history0)
+
+#### stores
+
+	testlib.hoon: =/  store0=store:tanote  ~[history0 history1]
 
 ### test default-tags
 
@@ -186,6 +190,8 @@ Extract specific fields from the latest version in the history of the note.
 	testlib.hoon:     ~ponhec-picwen
 	testlib.hoon: :-  .=  as.latest-history0
 	testlib.hoon:     "tester"
+	testlib.hoon: :-  .=  if.latest-history0
+	testlib.hoon:     [0x0 ~ponhec-picwen]
 	testlib.hoon: :-  .=  re.latest-history0
 	testlib.hoon:     "test"
 	testlib.hoon: :-  .=  text.latest-history0
@@ -220,6 +226,16 @@ _Confer_ [[2022-06-16 05-17]] discusses polymorphic gates, and whether it would 
 	testlib.hoon: :-  .=  (extract-backlinks-history:tanote history1)
 	testlib.hoon:     (sy ~["backlink" "tanote" "test data"])
 
+### test store structure
+
+A store of histories.
+
+	testlib.hoon:verbose: :-  store0
+	testlib.hoon: :-  .=  (extract-tags-store:tanote store0)
+	testlib.hoon:     (sy ~["#array" "#tag" "#test"])
+	testlib.hoon: :-  .=  (extract-backlinks-store:tanote store0)
+	testlib.hoon:     (sy ~["backlink" "tanote" "test data"])
+
 ### end tests
 
 	testlib.hoon: ~
@@ -232,5 +248,5 @@ Run the generator.
 +tanote!testlib
 ```
 
-Output of the generator should be a list of `%.y`.
+Output of the generator should be a list of `%.y`.  If we extracted the verbose variant, then the list will also contain various tanote structures.
 

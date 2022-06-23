@@ -48,9 +48,13 @@ I’ll let the Foundation decide how much this project is worth.  I hope at leas
 
 ### done
 
-My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The code so far extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
+My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The initial code extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
 
 Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.  Extract tags and backlinks from a note history, by considering only the latest (first) note.
+
+Filter a store of histories of notes, by whether the latest (first) note in the history has a given tag, and return the filtered store.
+
+Find in a store the history with the given regards, and return the history; or return a new history with an empty list, and the given regards.
 
 ### now
 
@@ -58,15 +62,28 @@ I just started Hoon school (I'm working on lists), and then comes Gall school an
 
 I am writing literate programs in markdown, to define library functions to extract tags from strings ([tanote.md](https://github.com/catenate/tanote/blob/main/tanote/lib/tanote.md)), and to test these library functions ([testlib.md](https://github.com/catenate/tanote/blob/main/tanote/gen/testlib.md)).  These literate programs describe the hoon cores line-by-line, and the code in the hoon files is actually extracted from the literate programs before it’s copied and committed to the desk, and also committed to the repo.
 
+Create a test case (tanote-help) which generates a store of tanote documentation, as a help resource for using and understanding tanote.
+
+Add, as `if` to the note structure, the id (unsigned hex, or an id structure from a library?) and source of a gora which must be present for a version of a note to be received (_confer_ [[2022-06-17 07-18]]).
+
 ### next
 
-Update a note, by adding a new version to the history of a note.
+Define a store (list history:tanote), initially ~.
+
+`=store (add-note-to-store note store)`: Given a new note and the store, find the history of the note in the store.  If the new note's re is not already in the store as a regards of any history, then add a new history with the note, and set its regards to the new note's re.  If the new note's re is already a regards in the store, then add the new note as the latest (first) version in the history's versions.  Aka `insert-note-store` as opposed to `insert-note-history`.
+
+List notes ((list tape) of regards) in a store.
+List notes ((list tape) of regards) in a store, which have in their latest version (intersection is the same as the given (set tape)) all the tags in the given (set tape).
+
+Cast @p to a tape and vice-versa.  @p tags in `text` start as tapes, but we will want to treat them as @p.  We also want to treat the @p in `by`, `if` and `to` as tags.
 
 ### later
 
-Store the overall structure containing version histories of notes.
+Store (graph-store?) the overall structure containing version histories of notes.
 
-Share a note with another ship.
+Share a note with another ship.  Receive a note from another ship.
+
+Share a note with another ship, if a gora is present.  Receive a note from another ship, if a gora is present.
 
 Front end.
 

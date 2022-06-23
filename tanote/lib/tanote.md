@@ -1,4 +1,4 @@
-[~ponhec-picwen]]~sarlur-pilled# library functions for %tanote
+# library functions for %tanote
 
 https://urbit.org/docs/hoon/hoon-school/libraries
 
@@ -7,6 +7,10 @@ https://urbit.org/docs/hoon/hoon-school/libraries
 Rename this program.
 
 	Edit ,s,tanote,tanote,g
+
+List arms.
+
+	grep -n '^\+\+ ' tanote.hoon /dev/null
 
 Extract hoon files and copy it to [[fake ~zod]] desk.
 
@@ -23,6 +27,8 @@ Commit the file in the desk.
 
 ## code
 
+Include the gora library, to define the type of a gora id?  Or is it just a `@ud`?
+
 Define a core.
 
 	tanote.hoon: |%
@@ -31,11 +37,15 @@ Define a core.
 
 The rune `+$` ([[lusbuc]]) defines a structure arm (type definition).
 
-	tanote.hoon: +$  note  [by=@p as=tape to=(list @p) re=tape text=tape]
+	tanote.hoon: +$  note  [by=@p as=tape if=[@ux @p] to=(list @p) re=tape text=tape]
 
-### note history structure
+### history structure
 
 	tanote.hoon: +$  history  [regards=tape versions=(list note)]
+
+### store structure
+
+	tanote.hoon: +$  store  (list history)
 
 ### default tags
 
@@ -49,7 +59,7 @@ Define the gate with no parameters.
 
 We return a [[set of tapes]].
 
-	tanote.hoon:   ^-  (set (list @t))
+	tanote.hoon:   ^-  (set tape)
 
 `*` means all notes.  `/` means select notes with backlinks to the selected note.
 
@@ -63,7 +73,7 @@ Extract a [[tanote/glossary#backlink]] from a [[tanote/glossary#text]].
 
 Accept the index of opening brackets, and the text.
 
-	tanote.hoon:   |=  [start=@ud text=(list @t)]
+	tanote.hoon:   |=  [start=@ud text=tape]
 
 Start looking for the backlink text after the opening brackets (`[[`).
 
@@ -75,7 +85,7 @@ Figure out when to stop looking for a space.
 
 Build up the substring.
 
-	tanote.hoon:   =/  backlink=(list @t)  ~
+	tanote.hoon:   =/  backlink=tape  ~
 
 Recursion point.
 
@@ -83,7 +93,7 @@ Recursion point.
 
 Return a tape.
 
-	tanote.hoon:   ^-  (list @t)
+	tanote.hoon:   ^-  tape
 
 If we are too close to the end of the tape, stop, and invalidate the backlink.  This means that the opening brackets were not closed by closing brackets (`]]`).
 
@@ -126,6 +136,37 @@ Accept a note, and determine the list of backlink indices and the text of the no
 	tanote.hoon:   |=  n=note
 	tanote.hoon:   (extract-backlinks-tape (index-backlinks text.n) text.n)
 
+### extract backlinks from a store 
+
+Extract [[tanote/glossary#backlink]]s from a store.
+
+	tanote.hoon: ++  extract-backlinks-store
+
+Accept a store, and compose the set of backlinks from all the histories.
+
+	tanote.hoon:   |=  s=store
+
+Build up a set of backlinks.
+
+	tanote.hoon:   =/  backlinks=(set tape)  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a set of backlinks.
+
+	tanote.hoon:   ^-  (set tape)
+
+When we are done processing histories, return the set of backlinks.
+
+	tanote.hoon:   ?~  s
+	tanote.hoon:     backlinks
+
+Extract backlinks from the first history, take the union of these and the set we are building, and then recurse with the remainder of the store.
+
+	tanote.hoon:   $(s +3:s, backlinks (~(uni in backlinks) (extract-backlinks-history +2:s)))
+
 ### extract backlinks from a tape
 
 Extract [[tanote/glossary#backlink]]s from note [[tanote/glossary#text]].
@@ -134,11 +175,11 @@ Extract [[tanote/glossary#backlink]]s from note [[tanote/glossary#text]].
 
 Accept the list of backlink starts, and the text of the note.
 
-	tanote.hoon:   |=  [starts=(list @ud) text=(list @t)]
+	tanote.hoon:   |=  [starts=(list @ud) text=tape]
 
 Build up the set of backlinks.
 
-	tanote.hoon:   =/  backlinks=(set (list @t))  ~
+	tanote.hoon:   =/  backlinks=(set tape)  ~
 
 Recursion point.
 
@@ -146,11 +187,11 @@ Recursion point.
 
 Return a set of tapes.
 
-	tanote.hoon:   ^-  (set (list @t))
+	tanote.hoon:   ^-  (set tape)
 
 Once we're done with the list of starting indices, return the set of backlinks.
 
-	tanote.hoon:   ?:  =(~ starts)
+	tanote.hoon:   ?~  starts
 	tanote.hoon:     backlinks
 
 For each starting index, extract the backlink at that index from the text, and add it to the set of backlinks.
@@ -165,7 +206,7 @@ Extract a [[tanote/glossary#tag]] from a [[tanote/glossary#text]].
 
 Accept a tag index, and the text.
 
-	tanote.hoon:   |=  [oi=@ud text=(list @t)]
+	tanote.hoon:   |=  [oi=@ud text=tape]
 
 Figure out when to stop looking for a space.
 
@@ -173,11 +214,11 @@ Figure out when to stop looking for a space.
 
 For [[tanote/glossary#tag]]s, we want to accept alphanumeric strings following an octothorpe (_eg_ `#test`) as well as the `@p`s (_eg_ `~ponhec-picwen`) of authors ([[tanote/glossary#by]]) and recipients ([[tanote/glossary#to]]).
 
-	tanote.hoon:   =/  allowed=(list @t)  "#-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~"
+	tanote.hoon:   =/  allowed=tape  "#-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~"
 
 Build up the substring.
 
-	tanote.hoon:   =/  tag=(list @t)  ~
+	tanote.hoon:   =/  tag=tape  ~
 
 Recursion point.
 
@@ -185,7 +226,7 @@ Recursion point.
 
 Return a tape.
 
-	tanote.hoon:   ^-  (list @t)
+	tanote.hoon:   ^-  tape
 
 If we are at the string length, stop, and return the tag.
 
@@ -198,7 +239,7 @@ Grab the current character.
 
 If we are at a character that is not part of a hash, stop, and return the tag.
 
-	tanote.hoon:   ?:  =(~ (find ~[t] allowed))
+	tanote.hoon:   ?~  (find ~[t] allowed)
 	tanote.hoon:     (flop tag)
 
 Otherwise, build up the tag with the next character.
@@ -227,6 +268,37 @@ Accept a note, and determine the list of tag indices and the text of the note.
 	tanote.hoon:   |=  n=note
 	tanote.hoon:   (extract-tags-tape (index-tags text.n) text.n)
 
+### extract tags from a store 
+
+Extract [[tanote/glossary#tag]]s from a store.
+
+	tanote.hoon: ++  extract-tags-store
+
+Accept a store, and compose the set of tags from all the histories.
+
+	tanote.hoon:   |=  s=store
+
+Build up a set of tags.
+
+	tanote.hoon:   =/  tags=(set tape)  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a set of tags.
+
+	tanote.hoon:   ^-  (set tape)
+
+When we are done processing histories, return the set of tags.
+
+	tanote.hoon:   ?~  s
+	tanote.hoon:     tags
+
+Extract tags from the first history, take the union of these and the set we are building, and then recurse with the remainder of the store.
+
+	tanote.hoon:   $(s +3:s, tags (~(uni in tags) (extract-tags-history +2:s)))
+
 ### extract tags from a tape
 
 Extract [[tanote/glossary#tag]]s from note [[tanote/glossary#text]].
@@ -235,11 +307,11 @@ Extract [[tanote/glossary#tag]]s from note [[tanote/glossary#text]].
 
 Accept the list of tag indices, and the text of the note.
 
-	tanote.hoon:   |=  [starts=(list @ud) text=(list @t)]
+	tanote.hoon:   |=  [starts=(list @ud) text=tape]
 
 Build up the set of tags.
 
-	tanote.hoon:   =/  tags=(set (list @t))  ~
+	tanote.hoon:   =/  tags=(set tape)  ~
 
 Recursion point.
 
@@ -247,16 +319,88 @@ Recursion point.
 
 Return a set of tapes.
 
-	tanote.hoon:   ^-  (set (list @t))
+	tanote.hoon:   ^-  (set tape)
 
 Once we're done with the list of tag indices, return the set of tags.
 
-	tanote.hoon:   ?:  =(~ starts)
+	tanote.hoon:   ?~  starts
 	tanote.hoon:     tags
 
 For each tag index, extract the tag at that index from the text, and add it to the set of tags.
 
 	tanote.hoon:   $(starts +3:starts, tags (~(put in tags) (extract-tag +2:starts text)))
+
+### find-store-regards
+
+Given a store and a regards, return the history with the given regards.
+
+	tanote.hoon: ++  find-store-regards
+
+Accept a store, and the regards to find.
+
+	tanote.hoon:   |=  [s=store regards=tape]
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a store.
+
+	tanote.hoon:   ^-  history
+
+Once we're done with the store, return an empty history with the given regards, to use as a new history.
+
+	tanote.hoon:   ?~  s
+	tanote.hoon:     [regards ~]
+
+Check whether this history has the given regards.
+
+	tanote.hoon:   =/  h=history  +2:s
+	tanote.hoon:   ?:  =(regards.h regards)
+	tanote.hoon:     h
+
+Otherwise, continue with the rest of the store.
+
+	tanote.hoon:   $(s +3:s)
+
+### filter-store-tag
+
+Given a store and a tag, return a store where the latest note in all the histories contains the given tag.
+
+	tanote.hoon: ++  filter-store-tag
+
+Accept a store, and the tag to filter it.
+
+	tanote.hoon:   |=  [unfiltered=store tag=tape]
+
+Build up a new store.
+
+	tanote.hoon:   =/  filtered=store  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a store.
+
+	tanote.hoon:   ^-  store
+
+Once we're done with the unfiltered store, return the filtered store.
+
+	tanote.hoon:   ?~  unfiltered
+	tanote.hoon:     filtered
+
+Check whether this history contains the tag in the latest (first) note.
+
+	tanote.hoon:   ?:  (~(has in (extract-tags-history +2:unfiltered)) tag)
+
+For each history with the tag in the latest (first) note, prepend the history to the filtered store, and recurse with the new filtered and unfiltered stores.
+
+	tanote.hoon:     $(unfiltered +3:unfiltered, filtered [+2:unfiltered filtered])
+
+Otherwise, continue with other histories.
+
+	tanote.hoon:   $(unfiltered +3:unfiltered)
 
 ### index backlinks
 
@@ -266,7 +410,7 @@ List indices of backlink starts (`[[`) in text.
 
 Accept a tape (usually the note text).
 
-	tanote.hoon:   |=  text=(list @t)
+	tanote.hoon:   |=  text=tape
 
 Use [fand](https://urbit.org/docs/hoon/reference/stdlib/2b#++fand) to find indices of backlinks.
 
@@ -280,7 +424,7 @@ List indices of tags in text.
 
 Accept a [[string]].
 
-	tanote.hoon:   |=  text=(list @t)
+	tanote.hoon:   |=  text=tape
 
 Use [fand](https://urbit.org/docs/hoon/reference/stdlib/2b#++fand) to find indices of tags.
 

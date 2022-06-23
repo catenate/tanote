@@ -22,6 +22,12 @@ The single @p of the author of a version of a note.  This field is read-only for
 
 Metadata carried with a note.  Considered a tag of the note.
 
+## if
+
+> Trifles they may be; but it is by such that character and disposition are oftenest revealed.—Washington Irving
+
+The gora which must be present on a ship for a version of a note to be received.
+
 ## regards
 
 > No one regards what is before his feet; we all gaze at the stars.—Quintus Ennius
