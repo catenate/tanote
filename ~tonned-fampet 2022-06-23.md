@@ -7,3 +7,9 @@ If her view is any indication, a Roam competitor on Urbit could be a killer app 
 [[~ponhec-picwen]]: I use Obsidian synced between my laptop and phone, so if one crashes the other can resync the replacement. I plan to have [[bi-directional linking]] in %[[tanote/tanote]], but I'm still working on internals, like structuring notes into histories and histories into stores, and extracting tags and back links from stores, to have the right displays on the front end. Also, I have no real plans to make an "[[Urbsidian]]": if we liken [[Emacs]] to [[Obsidian]], then what I want to create with %[[tanote]] is more like [[vi]] (or [[vim]]).
 
 I should also mention that I feel %[[tanote]] will be better at sharing than any of the mentioned tools, since it will be able to share (and record the fact of that sharing) specific versions of specific notes individually. Also, if it works out, my plan is to let you optionally gate the sharing on whether the recipient(s) have a specific [[gora]] that you can set per version of a note.
+
+[[~sarlev-sarsen]]: Build It. <<< My general statement for all things urbit notetaking/pkm related.  There is lots of pontificating on this topic and the best way to figure out what works best is most certainly to start doing it.  [[~ponhec-picwen]] is working on a proposal for this which is rad, and [[Engram]] is still an open bounty as of now, but would be good to see a few more options out there as well.  [[~ribben-donnyl]] is working on an [[iOS]] mobile notes app that stores in your urbit, as well.
+
+[[~tonned-fampet]]: [[~ponhec-picwen]], sounds great—is there a group where I can follow the development progress?
+
+[[~ponhec-picwen]]: [[~tonned-fampet]]: I update (at least weekly) the proposal notebook in my tah-noh-tay group with the latest progress, and you can watch my [[GitHub]] repo catenate/[[tanote/tanote]] for commits.

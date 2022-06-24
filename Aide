@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Update progress.'
+git commit -a -m 'Add help generator.  Add field if, to store a gora to check.  Add stores of histories, and arms to work wth stores.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '

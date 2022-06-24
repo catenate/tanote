@@ -8,6 +8,7 @@ Tanote, a factious note store
 web+urbitgraph://group/~ponhec-picwen/tah-noh-tay
 just me :)
 
+
 ---
 
 # Tanote proposal
@@ -50,7 +51,7 @@ I’ll let the Foundation decide how much this project is worth.  I hope at leas
 
 My work on it started with notes and a static page in the repo [catena/tanote](https://github.com/catenate/tanote).  The initial code extracts tags (_eg_ `#test` or `~ponhec-picwen`) and backlinks (_eg_ `[[test]]`) from note text.
 
-Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.  Extract tags and backlinks from a note history, by considering only the latest (first) note.
+Define the structure of a note.  Extract all the details from the history of a note, and a particular note.  Extract tags and backlinks from either a note, or a tape.  Extract tags and backlinks from a history, by considering only the latest (first) note.  Extract tags and backlinks from a store, by composing a union of all the sets extracted from its histories.
 
 Filter a store of histories of notes, by whether the latest (first) note in the history has a given tag, and return the filtered store.
 
@@ -73,7 +74,7 @@ Define a store (list history:tanote), initially ~.
 `=store (add-note-to-store note store)`: Given a new note and the store, find the history of the note in the store.  If the new note's re is not already in the store as a regards of any history, then add a new history with the note, and set its regards to the new note's re.  If the new note's re is already a regards in the store, then add the new note as the latest (first) version in the history's versions.  Aka `insert-note-store` as opposed to `insert-note-history`.
 
 List notes ((list tape) of regards) in a store.
-List notes ((list tape) of regards) in a store, which have in their latest version (intersection is the same as the given (set tape)) all the tags in the given (set tape).
+List notes ((list tape) of regards) in a store, which have in their latest version (intersection is the same as the given (set tape)) all the tags in the given (set tape) (which will be the set of tags selected in the tags section of the front end).
 
 Cast @p to a tape and vice-versa.  @p tags in `text` start as tapes, but we will want to treat them as @p.  We also want to treat the @p in `by`, `if` and `to` as tags.
 
@@ -81,11 +82,11 @@ Cast @p to a tape and vice-versa.  @p tags in `text` start as tapes, but we will
 
 Store (graph-store?) the overall structure containing version histories of notes.
 
-Share a note with another ship.  Receive a note from another ship.
+Share a version of a note with another ship.  Receive a version of a note from another ship, and add it to the store.
 
-Share a note with another ship, if a gora is present.  Receive a note from another ship, if a gora is present.
+Share a note with another ship, if a gora has been granted to that ship (jaded approach checks with the gora issuer).  Receive a note from another ship, if a gora is present (naïve approach checks the current ship).
 
-Front end.
+Front end (_confer_ [[interfaces#front end]]).
 
 ---
 
