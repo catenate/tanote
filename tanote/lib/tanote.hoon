@@ -2,6 +2,28 @@
 +$  note  [by=@p as=tape if=[@ux @p] to=(list @p) re=tape text=tape]
 +$  history  [regards=tape versions=(list note)]
 +$  store  (list history)
+++  add-note-history
+  |=  [n=note h=history]
+  ^-  history
+  ?:  =(regards.h re.n)
+    ?~  versions.h
+      [regards.h ~[n]]
+    [regards.h [n versions.h]]
+  [re.n ~[n]]
+++  add-note-store
+  |=  [n=note s0=store]
+  =/  found=history  (find-store-regards s0 re.n)
+  ?:  =(found [re.n ~])
+    [[re.n ~[n]] s0]
+  =/  s1=store  ~
+  |-
+  ^-  store
+  ?~  s0
+    s1
+  =/  h0=history  +2:s0
+  ?:  =(re.n regards.h0)
+    $(s0 +3:s0, s1 [[regards.h0 [n versions.h0]] s1])
+  $(s0 +3:s0, s1 [h0 s1])
 ++  default-tags
   |=  ~
   ^-  (set tape)

@@ -57,6 +57,14 @@ Filter a store of histories of notes, by whether the latest (first) note in the 
 
 Find in a store the history with the given regards, and return the history; or return a new history with an empty list, and the given regards.
 
+Add, as `if` to the note structure, the id (unsigned hex) and source (@p) of a gora which must be present for a version of a note to be received (_confer_ [[2022-06-17 07-18]]).
+
+Add arm to add a note to a history, `h=history:tanote  (add-note-history note history)`.  Given a new note and a history, check whether the `re` of the note matches the `regards` of the history.   If so, prepend the note to the `versions` of the history as the first (latest) version of the note.
+
+Add arm to add a note to a store, `s=store:tanote  (add-note-store note store)`.  Given a new note and a store, find the history of the note in the store.  If the new note's `re` is not already in the store as a `regards` of any history, then add a new history with the note, and set its `regards` to the new note's `re`.  If the new note's `re` is already a regards in the store, then use `add-note-history` to add the new note as the latest (first) version in the history's `versions`.
+
+Rather than defining the internals of a history, add a note to an empty history.  Update a note (add a new version) in a store (create a new store with the updated history of the note).
+
 ### now
 
 I just started Hoon school (I'm working on lists), and then comes Gall school and working through the ~pocwet journal example, which should provide a kind of basis for this project’s code.
@@ -65,16 +73,11 @@ I am writing literate programs in markdown, to define library functions to extra
 
 Create a test case (tanote-help) which generates a store of tanote documentation, as a help resource for using and understanding tanote.
 
-Add, as `if` to the note structure, the id (unsigned hex, or an id structure from a library?) and source of a gora which must be present for a version of a note to be received (_confer_ [[2022-06-17 07-18]]).
-
 ### next
 
 Define a store (list history:tanote), initially ~.
 
-`=store (add-note-to-store note store)`: Given a new note and the store, find the history of the note in the store.  If the new note's re is not already in the store as a regards of any history, then add a new history with the note, and set its regards to the new note's re.  If the new note's re is already a regards in the store, then add the new note as the latest (first) version in the history's versions.  Aka `insert-note-store` as opposed to `insert-note-history`.
-
-List notes ((list tape) of regards) in a store.
-List notes ((list tape) of regards) in a store, which have in their latest version (intersection is the same as the given (set tape)) all the tags in the given (set tape) (which will be the set of tags selected in the tags section of the front end).
+List notes ((list tape) of regards) in a store.  List notes ((list tape) of regards) in a store, which have in their latest version (intersection is the same as the given (set tape)) all the tags in the given (set tape) (which will be the set of tags selected in the tags section of the front end).
 
 Cast @p to a tape and vice-versa.  @p tags in `text` start as tapes, but we will want to treat them as @p.  We also want to treat the @p in `by`, `if` and `to` as tags.
 
@@ -85,6 +88,10 @@ Store (graph-store?) the overall structure containing version histories of notes
 Share a version of a note with another ship.  Receive a version of a note from another ship, and add it to the store.
 
 Share a note with another ship, if a gora has been granted to that ship (jaded approach checks with the gora issuer).  Receive a note from another ship, if a gora is present (naïve approach checks the current ship).
+
+Implement the mechanism to check for the presence of the requested gora on the receiving ship (naïve approach).  Implement the mechanism to check for the presence of the requested gora on the sending ship (jaded approach).
+
+To improve average search and add performance from _O_(_n_) to _O_(log _n_), maintain a store as a [sorted binary tree](https://en.m.wikipedia.org/wiki/Binary_search_tree) (sorte or eorst), rather than an unsorted list.
 
 Front end (_confer_ [[interfaces#front end]]).
 

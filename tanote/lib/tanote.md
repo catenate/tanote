@@ -2,7 +2,7 @@
 
 https://urbit.org/docs/hoon/hoon-school/libraries
 
-## user
+## use this file
 
 Rename this program.
 
@@ -25,7 +25,7 @@ Commit the file in the desk.
 |commit %tanote
 ```
 
-## code
+## data structures
 
 Include the gora library, to define the type of a gora id?  Or is it just a `@ud`?
 
@@ -47,6 +47,93 @@ The rune `+$` ([[lusbuc]]) defines a structure arm (type definition).
 
 	tanote.hoon: +$  store  (list history)
 
+## add note versions
+
+### add note to a history
+
+`h=history  (add-note-history)`: Given a new note and a history, check whether the `re` of the note matches the `regards` of the history.   If so, prepend the note to the `versions` of the history as the first (latest) version of the note.
+
+Define the arm.
+
+	tanote.hoon: ++  add-note-history
+
+Accept a note and a history.
+
+	tanote.hoon:   |=  [n=note h=history]
+
+Return a history.
+
+	tanote.hoon:   ^-  history
+
+Check whether the `re` of the note version matches the `regards` of the history.
+
+	tanote.hoon:   ?:  =(regards.h re.n)
+
+If there are no versions in the history, then return the history with only the note.
+
+	tanote.hoon:     ?~  versions.h
+	tanote.hoon:       [regards.h ~[n]]
+
+Return the history with the given note version prepended.
+
+	tanote.hoon:     [regards.h [n versions.h]]
+
+If the `re` of the note version does not match the `regards` of the history, return a new history with the given note.
+
+	tanote.hoon:   [re.n ~[n]]
+
+### add a note to a store 
+
+`s=store  (add-note-store note store)`: Given a new note and a store, find the history of the note in the store.  If the new note's `re` is not already in the store as a `regards` of any history, then add a new history with the note, and set its `regards` to the new note's `re`.  If the new note's `re` is already a regards in the store, then use `add-note-history` to add the new note as the latest (first) version in the history's `versions`.
+
+Work through the given store, building another store with either the updated history, or a new history.
+
+Define the arm.
+
+	tanote.hoon: ++  add-note-store
+
+Accept a note and a store.
+
+	tanote.hoon:   |=  [n=note s0=store]
+
+If the note is not in the store, add a history for the note and return the updated store.
+
+	tanote.hoon:   =/  found=history  (find-store-regards s0 re.n)
+	tanote.hoon:   ?:  =(found [re.n ~])
+	tanote.hoon:     [[re.n ~[n]] s0]
+
+Build an updated store.
+
+	tanote.hoon:   =/  s1=store  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a store.
+
+	tanote.hoon:   ^-  store
+
+When the given store is empty, return the built store.  If we haven't yet added in the note, we should do so now.
+
+	tanote.hoon:   ?~  s0
+	tanote.hoon:     s1
+
+Check the first history in the store
+
+	tanote.hoon:   =/  h0=history  +2:s0
+
+If the first history in the store matches, update the history with the note, and continue.
+
+	tanote.hoon:   ?:  =(re.n regards.h0)
+	tanote.hoon:     $(s0 +3:s0, s1 [[regards.h0 [n versions.h0]] s1])
+
+Otherwise, just continue with the next history.
+
+	tanote.hoon:   $(s0 +3:s0, s1 [h0 s1])
+
+## defaults
+
 ### default tags
 
 Define the arm.
@@ -64,6 +151,8 @@ We return a [[set of tapes]].
 `*` means all notes.  `/` means select notes with backlinks to the selected note.
 
 	tanote.hoon:   (sy ~["*" "/"])
+
+## extract backlinks
 
 ### extract backlink
 
@@ -198,6 +287,8 @@ For each starting index, extract the backlink at that index from the text, and a
 
 	tanote.hoon:   $(starts +3:starts, backlinks (~(put in backlinks) (extract-backlink +2:starts text)))
 
+## extract tags
+
 ### extract tag
 
 Extract a [[tanote/glossary#tag]] from a [[tanote/glossary#text]].
@@ -330,6 +421,8 @@ For each tag index, extract the tag at that index from the text, and add it to t
 
 	tanote.hoon:   $(starts +3:starts, tags (~(put in tags) (extract-tag +2:starts text)))
 
+## find in stores
+
 ### find-store-regards
 
 Given a store and a regards, return the history with the given regards.
@@ -401,6 +494,8 @@ For each history with the tag in the latest (first) note, prepend the history to
 Otherwise, continue with other histories.
 
 	tanote.hoon:   $(unfiltered +3:unfiltered)
+
+## index subtext
 
 ### index backlinks
 
