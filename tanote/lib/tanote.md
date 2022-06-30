@@ -152,6 +152,44 @@ We return a [[set of tapes]].
 
 	tanote.hoon:   (sy ~["*" "/"])
 
+## generate displays
+
+### display tags
+
+Define the arm.
+
+	tanote.hoon: ++  display-tags
+
+Accept a store.
+
+	tanote.hoon:   |=  s=store
+
+Return a set of tags.
+
+	tanote.hoon:   ^-  (set tape)
+
+Unite the default tags with the tags in the store.
+
+	tanote.hoon:   (~(uni in (default-tags)) (extract-tags-store s))
+
+### display visible backlinks
+
+Define the arm.
+
+	tanote.hoon: ++  display-backlinks
+
+Accept a store.
+
+	tanote.hoon:   |=  s=store
+
+Return a set of tags.
+
+	tanote.hoon:   ^-  (set tape)
+
+Unite the default tags with the tags in the store.
+
+	tanote.hoon:   (extract-backlinks-store s)
+
 ## extract backlinks
 
 ### extract backlink
@@ -223,7 +261,14 @@ Extract [[tanote/glossary#backlink]]s from a note.
 Accept a note, and determine the list of backlink indices and the text of the note.
 
 	tanote.hoon:   |=  n=note
-	tanote.hoon:   (extract-backlinks-tape (index-backlinks text.n) text.n)
+
+Return a set of backlinks.
+
+	tanote.hoon:   ^-  (set tape)
+
+Construct a set of all tags in the note text, and add metadata backlinks from [[tanote/glossary#as]].  #now 
+
+	tanote.hoon:   (~(uni in (sy ~[as.n])) (extract-backlinks-tape (index-backlinks text.n) text.n))
 
 ### extract backlinks from a store 
 
@@ -357,6 +402,13 @@ Extract [[tanote/glossary#tag]]s from a note.
 Accept a note, and determine the list of tag indices and the text of the note.
 
 	tanote.hoon:   |=  n=note
+
+Return a set of tags.
+
+	tanote.hoon:   ^-  (set tape)
+
+Construct a set of all tags in the note text, and add metadata tags from @p. #now 
+
 	tanote.hoon:   (extract-tags-tape (index-tags text.n) text.n)
 
 ### extract tags from a store 

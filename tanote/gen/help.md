@@ -110,7 +110,7 @@ Updating the store flops it.
 	help.hoon: :-  .=  (extract-tags-store:tanote help0)
 	help.hoon:     (sy ~["#field"])
 	help.hoon: :-  .=  (extract-backlinks-store:tanote help0)
-	help.hoon:     ~
+	help.hoon:     (sy ~["reviewer"])
 
 Filter store by a tag.
 
@@ -137,7 +137,7 @@ A store of histories.
 	help.hoon: :-  .=  (extract-tags-store:tanote help1)
 	help.hoon:     (sy ~["#field" "#list" "#tape"])
 	help.hoon: :-  .=  (extract-backlinks-store:tanote help1)
-	help.hoon:     (sy ~["history" "note" "regards" "re" "note"])
+	help.hoon:     (sy ~["reviewer" "history" "note" "regards" "re" "note"])
 
 Filter store by a tag.
 
@@ -148,6 +148,27 @@ Filter store by a tag.
 	help.hoon: :-  .=  (find-store-regards:tanote help1 "history")
 	help.hoon:     updated-history-history
 
+## displays
+
+### display tags
+
+	help.hoon:verbose: :-  (display-tags:tanote help0)
+	help.hoon: :-  .=  (display-tags:tanote help0)
+	help.hoon:     (sy ~["*" "/" "#field"])
+
+	help.hoon:verbose: :-  (display-tags:tanote help1)
+	help.hoon: :-  .=  (display-tags:tanote help1)
+	help.hoon:     (sy ~["*" "/" "#field" "#list" "#tape"])
+
+### display backlinks
+
+	help.hoon:verbose: :-  (display-backlinks:tanote help0)
+	help.hoon: :-  .=  (display-backlinks:tanote help0)
+	help.hoon:     (sy ~["reviewer"])
+
+	help.hoon:verbose: :-  (display-backlinks:tanote help1)
+	help.hoon: :-  .=  (display-backlinks:tanote help1)
+	help.hoon:     (sy ~["reviewer" "history" "note" "regards" "re" "note"])
 
 ## end tests
 

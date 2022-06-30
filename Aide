@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Add arms to add a note to a history, and to add a note to a store.'
+git commit -a -m 'Display tags and backlinks.  Consider as as a backlink instead of a tag.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '

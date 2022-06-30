@@ -73,6 +73,10 @@ I am writing literate programs in markdown, to define library functions to extra
 
 Create a test case (tanote-help) which generates a store of tanote documentation, as a help resource for using and understanding tanote.
 
+Add metadata tags (@p as text) and backlinks 
+(`as`) to the set extracted from the text of a note version.
+
+
 ### next
 
 Define a store (list history:tanote), initially ~.
@@ -81,11 +85,21 @@ List notes ((list tape) of regards) in a store.  List notes ((list tape) of rega
 
 Cast @p to a tape and vice-versa.  @p tags in `text` start as tapes, but we will want to treat them as @p.  We also want to treat the @p in `by`, `if` and `to` as tags.
 
+Generate display of tags from a store, including defaults and @p.  Store @p as a separate list, to avoid translating to and from text?  What about @p mentioned in text?
+
+Add to the store a set of tapes `tags` representing the selected tags.  Add to the store a tape `regards` representing the selected note.  Store the current list of histories in `histories`.
+
+	tanote.hoon: +$  store  [tags=(set tape) regards=tape histories=(list note)]
+
+Generate display of visible note regards, which is the list of all notes with the selected tags.
+
 ### later
 
 Store (graph-store?) the overall structure containing version histories of notes.
 
-Share a version of a note with another ship.  Receive a version of a note from another ship, and add it to the store.
+Share a version of a note with another ship.  Receive a version of a note from another ship,
+
+Copy received version to a new/received store, or with a new/received tag (but where would that tag be stored?)  If we have multiple visible stores (possibly in a crossbar access the top, like the new terminal's named tabs and `+`, we could copy the received note into the `new` store, then delete it from the `new` store after viewing it, or marking all as seen. 
 
 Share a note with another ship, if a gora has been granted to that ship (jaded approach checks with the gora issuer).  Receive a note from another ship, if a gora is present (naïve approach checks the current ship).
 

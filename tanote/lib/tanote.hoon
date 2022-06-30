@@ -28,6 +28,14 @@
   |=  ~
   ^-  (set tape)
   (sy ~["*" "/"])
+++  display-tags
+  |=  s=store
+  ^-  (set tape)
+  (~(uni in (default-tags)) (extract-tags-store s))
+++  display-backlinks
+  |=  s=store
+  ^-  (set tape)
+  (extract-backlinks-store s)
 ++  extract-backlink
   |=  [start=@ud text=tape]
   =/  cursor=@ud  (add 2 start)
@@ -47,7 +55,8 @@
   (extract-backlinks-note (snag 0 versions.h))
 ++  extract-backlinks-note
   |=  n=note
-  (extract-backlinks-tape (index-backlinks text.n) text.n)
+  ^-  (set tape)
+  (~(uni in (sy ~[as.n])) (extract-backlinks-tape (index-backlinks text.n) text.n))
 ++  extract-backlinks-store
   |=  s=store
   =/  backlinks=(set tape)  ~
@@ -82,6 +91,7 @@
   (extract-tags-note (snag 0 versions.h))
 ++  extract-tags-note
   |=  n=note
+  ^-  (set tape)
   (extract-tags-tape (index-tags text.n) text.n)
 ++  extract-tags-store
   |=  s=store
