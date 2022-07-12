@@ -186,7 +186,7 @@ Return a set of tags.
 
 	tanote.hoon:   ^-  (set tape)
 
-Unite the default tags with the tags in the store.
+Extract backlinks from (the latest (first) note version of) all histories in the store.
 
 	tanote.hoon:   (extract-backlinks-store s)
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <svg version="1.1"
+        baseProfile="full"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:cc="http://creativecommons.org/ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/" 
+        xmlns:blazonML="http://drawshield.net/blazonML" preserveAspectRatio="xMidYMid meet" height="1200" width="1000" viewBox="0,0,1000,1200 "><defs></defs><g ><g mask="url(#mask7)"><g><g><title>tierced-in-fess</title><desc>Division used to fill field</desc><g stroke-width="2" stroke="#000000" ><g  fill="#109C4E"><rect x='-100' y='-100' width='1200' height='1200' /></g>
+<g  fill="#FFF0BD"><path fill-rule="evenodd" d="M-100,333.33333333333h1200 v766.66666666667   h-1200.000   v-766.667  z" /></g>
+<g  fill="#ACF1FF"><path fill-rule="evenodd" d="M-100,666.66666666667h1200 v433.33333333333   h-1200.000   v-433.333  z" /></g></g></g><g transform='translate(0,0)'><g  fill="#343434"><g class="PlaceCharge" transform=" translate(444.091796875,80) scale(0.09765625, 0.09765625) " >
+<title>a letter #</title><g   ><g  transform="translate(0,0)"   ><g  transform="scale(1,-1) translate(0, -1638)"   ><path  stroke-width="40.96"  stroke="#696969" d="M387 537h285l76 401h-285zM1028 537v-121h-258l-78 -416h-123l78 416h-285l-77 -416h-123l78 416h-189v121h211l78 401h-223v121h245l74 403h125l-76 -403h285l76 403h123l-76 -403h201v-121h-224l-75 -401h233z"   />
+</g>
+</g>
+</g>
+</g>
+</g><g  fill="#343434"><g class="PlaceCharge" transform=" translate(432.91015625,380) scale(0.1171875, 0.1171875) " >
+<title>a letter |</title><g   ><g  transform="translate(0,0)"   ><g  transform="scale(1,-1) translate(0, -1638)"   ><path  stroke-width="40.96"  stroke="#696969" d="M633 -492h-123v2048h123v-2048z"   />
+</g>
+</g>
+</g>
+</g>
+</g><g  fill="#343434"><g class="PlaceCharge" transform=" translate(427.6123046875,695) scale(0.1220703125, 0.1220703125) " >
+<title>the letter v</title><g   ><g  transform="translate(0,0)"   ><g  transform="scale(1,-1) translate(0, -1638)"   ><path  stroke-width="40.96"  stroke="#696969" d="M8 1012v86h512v-86h-26q-62 0 -92.5 -24t-30.5 -75q0 -17 4 -34.5t12 -40.5l139 -387q13 -36 27 -79.5t26.5 -85.5t22.5 -79.5t14 -63.5h7q5 22 16.5 54.5t26 71t30 78.5t29.5 77l147 399q10 25 14.5 48t4.5 40q0 53 -33.5 77t-101.5 24h-15v86h439v-86h-25 q-30 0 -51 -6.5t-38 -24.5t-32.5 -49t-34.5 -80l-323 -852h-187l-329 903q-12 32 -25 53t-30 33.5t-39 17.5t-52 5h-6z"   />
+</g>
+</g>
+</g>
+</g>
+</g></g></g></g><defs><mask id="mask7" >
+<path fill="#FFFFFF" d="m 0,0 h 1000 v 1000 h -1000 z" />
+</mask>
+</defs></g></svg>

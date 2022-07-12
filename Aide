@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Display tags and backlinks.  Consider as as a backlink instead of a tag.'
+git commit -a -m 'Split proposal document.  Add landscape image.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '
@@ -20,3 +20,4 @@ git status --branch --short
 host which urbit
 mv ../tanote*.md .
 rm -rf /n/local/home/jdc/urbit/zod/tanote/*
+https://i.imgur.com/S7PHgtX.png
