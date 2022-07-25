@@ -41,11 +41,23 @@ The rune `+$` ([[lusbuc]]) defines a structure arm (type definition).
 
 ### history structure
 
+All the note versions in a history have `regards` in common.
+
 	tanote.hoon: +$  history  [regards=tape versions=(list note)]
 
 ### store structure
 
 	tanote.hoon: +$  store  (list history)
+
+### front structure
+
+A front is a filtered list of note histories.
+
+	tanote.hoon: +$  front  [tab=tape tags=(set tape) tugs=(set tape) regards=tape histories=store]
+
+Store the tag-selected list of `histories`, a set of tapes `tugs` containing user-selected tags, a set of tapes `tags` containing note-version tags (maintained by tanote) selected by parts of the front end (for tab unseen, and tab sent), and a tape `regards` representing a single note selected from the list of `histories`.  Store the short name of the `tags`-derived store in `tab` for use on another tab of the front end.
+
+In the main default front, `tab` is `"all"`, `tags` is `*`, `tugs` is `~`, `regards` is `~`, and `histories` contains all the note histories known to this ship.
 
 ## add note versions
 
@@ -473,6 +485,47 @@ For each tag index, extract the tag at that index from the text, and add it to t
 
 	tanote.hoon:   $(starts +3:starts, tags (~(put in tags) (extract-tag +2:starts text)))
 
+## filter fronts
+
+### filter by regards
+
+Given a front with filters, return a front with the histories filtered by the regards set in the front.
+
+	tanote.hoon: ++  filter-front-regards
+
+Accept a front with a presumably unfiltered histories.  This function should be idempotent: if called on its own output (same filters, updated histories), its further output should not be changed.
+
+	tanote.hoon:   |=  f=front
+
+Return a [[tanote/glossary#front]].
+
+	tanote.hoon:   ^-  front
+
+	tanote.hoon:   ?~  regards.f
+	tanote.hoon:     f
+	tanote.hoon:   [tab=tab.f tags=tags.f tugs=tugs.f regards=regards.f histories=~[(find-store-regards histories.f regards.f)]]
+
+### filter by tugs
+
+Given a front with filters, return a front with the histories filtered by tugs set in the front.
+
+	tanote.hoon: ++  filter-front-tugs
+
+Accept a front with a presumably unfiltered histories.  This function should be idempotent: if called on its own output (same filters, updated histories), its further output should not be changed.
+
+	tanote.hoon:   |=  f=front
+
+Return a [[tanote/glossary#front]].
+
+	tanote.hoon:   ^-  front
+
+	tanote.hoon:   ?~  tugs.f
+	tanote.hoon:     f
+
+Check whether all the tags in `tugs` are in the intersection of `tugs` and the tags of the latest version in each history.
+
+	tanote.hoon:   [tab=tab.f tags=tags.f tugs=tugs.f regards=regards.f histories=(filter-store-tags histories.f tugs.f)]
+
 ## find in stores
 
 ### find-store-regards
@@ -547,6 +600,48 @@ Otherwise, continue with other histories.
 
 	tanote.hoon:   $(unfiltered +3:unfiltered)
 
+### filter-store-tags
+
+Given a store and a set of tags, return a store where the latest note in all the histories contains all the given tags.
+
+	tanote.hoon: ++  filter-store-tags
+
+Accept a store, and the tag to filter it.
+
+	tanote.hoon:   |=  [unfiltered=store tags=(set tape)]
+
+Build up a new store.
+
+	tanote.hoon:   =/  filtered=store  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a store.
+
+	tanote.hoon:   ^-  store
+
+Once we're done with the unfiltered store, return the filtered store.
+
+	tanote.hoon:   ?~  unfiltered
+	tanote.hoon:     filtered
+
+#now 
+
+Check whether the first (latest) note in this history contains all the given tags.  This is true if the set of given tags is equal to the intersection of the set of given tags and the set of tags in the note version.
+
+	tanote.hoon:   ?:  .=  tags
+	tanote.hoon:       (~(int in tags) (extract-tags-history +2:unfiltered))
+
+For each history with the tags in the latest (first) note, prepend the history to the filtered store, and recurse with the new filtered and unfiltered stores.
+
+	tanote.hoon:     $(unfiltered +3:unfiltered, filtered [+2:unfiltered filtered])
+
+Otherwise, continue with other histories.
+
+	tanote.hoon:   $(unfiltered +3:unfiltered)
+
 ## index subtext
 
 ### index backlinks
@@ -576,6 +671,42 @@ Accept a [[string]].
 Use [fand](https://urbit.org/docs/hoon/reference/stdlib/2b#++fand) to find indices of tags.
 
 	tanote.hoon:   (weld (fand "#" text) (fand "~" text))
+
+## list regards
+
+### list all regards in a store 
+
+Construct a list of all the [[tanote/glossary#regards]] ([[hoon/glossary#tape]]s) in a store.
+
+	tanote.hoon: ++  list-regards-store
+
+Accept a store, and compose the list of regards from all the histories.
+
+	tanote.hoon:   |=  s=store
+
+Build up a list of regards.
+
+	tanote.hoon:   =/  regards=(list tape)  ~
+
+Recursion point.
+
+	tanote.hoon:   |-
+
+Return a list of regards.
+
+	tanote.hoon:   ^-  (list tape)
+
+When we are done processing histories, return the list of regards.
+
+	tanote.hoon:   ?~  s
+	tanote.hoon:     regards
+
+Extract regards from the first history, add to the front of the list we are building, and then recurse with the remainder of the store.
+
+	tanote.hoon:   =/  h=history  +2:s
+	tanote.hoon:   $(s +3:s, regards [regards.h regards])
+
+#now 
 
 End of core.
 

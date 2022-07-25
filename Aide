@@ -10,7 +10,7 @@ cp tanote/desk.ship /n/local/home/jdc/urbit/zod/tanote
 cp tanote/sys.kelvin /n/local/home/jdc/urbit/zod/tanote
 git add --all .
 git checkout 'create tanote desk files.md'
-git commit -a -m 'Split proposal document.  Add landscape image.'
+git commit -a -m 'Add icon designed in Drawshield.  Split progress into back-end and front-end.  Update members of tah-noh-tay.  Add front struct, to store filters and a filtered store.  List regards in a store.  Filter store front by regards or user tags.  Filter a store by tags.'
 git diff --staged >commit.diff
 git diff >commit.diff
 git grep -n '^++ '

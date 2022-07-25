@@ -1,3 +1,7 @@
+~libbyl-lonsyd
+Role
+Member
+
 calibri
 ~normul-postem
 Role
@@ -26,11 +30,20 @@ Kate Bush Experimenting with Orgone Rabsef
 ~rabsef-bicrym
 Role
 Member
+
+~am
+~haddef-sigwen
+Role
+Member
 ~bilnut-holdem
 ~bilnut-holdem
 Role
 Member
 ~hodreb-racdem
+Role
+Member
+~sogrum-savluc, webmaster
+~sogrum-savluc
 Role
 Member
 ~lorfeb-taglut
@@ -47,6 +60,10 @@ Member
 ~lomseg-laclut
 Role
 Member
+Vitalii Bulychov
+~hardem
+Role
+Member
 
 ~norsyr-torryn
 Role
@@ -55,6 +72,36 @@ Member
 Role
 Member
 ~siplyn-difmev
+Role
+Member
+
+~wicrum-wicrun
+Role
+Member
+ixv
+~novlud-padtyv
+Role
+Member
+~taller-ravnut�
+~lomseg-laclut
+Role
+Member
+Vitalii Bulychov
+~hardem
+Role
+Member
+
+~norsyr-torryn
+Role
+Member
+~midden-fabler
+Role
+Member
+~siplyn-difmev
+Role
+Member
+
+~wicrum-wicrun
 Role
 Member
 ixv
